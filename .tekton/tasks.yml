@@ -1,4 +1,4 @@
-apiVersion: tekton.dev/v1
+apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: cleanup
@@ -26,12 +26,13 @@ spec:
           rm -rf "${WORKSPACE_SOURCE_PATH}"/..?*
         fi
 
-
-apiVersion: tekton.dev/v1
+---
+apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: nose
 spec:
+  description: Run unit tests with nosetests
   workspaces:
     - name: source
   params:
